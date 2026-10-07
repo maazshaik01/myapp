@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import MyComponent from './MyComponent';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    try {
+      JSON.parse('{ invalid: json }');
+    } catch (error) {
+      const customMessage = 'JSON Parsing Failed: ' + error.message;
+      console.error(customMessage);
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <nav className="navbar">
+        <h2>MyApp</h2>
+
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Contact</li>
+        </ul>
+      </nav>
+
+      <main className="content">
+        <h1>Main App Component</h1>
+        <p>Welcome to my React application.</p>
+
+        <MyComponent />
+      </main>
     </div>
   );
 }
